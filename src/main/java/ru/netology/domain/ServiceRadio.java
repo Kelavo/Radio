@@ -1,59 +1,88 @@
 package ru.netology.domain;
 
 public class ServiceRadio {
-    private int currentRadio;
+    private int numberStation = 10;
+    private int currentStation;
     private int currentVolume;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int maxVolume = 100;
+    private int minVolume = 0;
 
-    public void setCurrentRadio(int currentRadio) {
-        if (currentRadio < 0) {
-            return;
-        }
-        if (currentRadio > 9) {
-            return;
-        }
-        this.currentRadio = currentRadio;
+    public ServiceRadio() {
     }
+
+    public ServiceRadio(int numberStation) {
+        this.numberStation = numberStation;
+        this.maxStation = numberStation - 1;
+    }
+
+    public int getNumberStation() {
+        return numberStation;
+    }
+
+    public void setNumberStation(int numberStation) {
+        if (numberStation > 0) {
+            this.numberStation = numberStation;
+            return;
+        }
+
+    }
+
+    public void setCurrentStation(int currentStation) {
+        if (currentStation < minStation) {
+            return;
+        }
+        if (currentStation > maxStation) {
+            return;
+        }
+        this.currentStation = currentStation;
+    }
+
 
     public void next() {
-        if (currentRadio == 9) {
-            setCurrentRadio(0);
+        if (currentStation == maxStation) {
+            setCurrentStation(minStation);
             return;
         }
-        currentRadio++;
+        currentStation++;
     }
+
 
     public void prev() {
-        if (currentRadio == 0) {
-            setCurrentRadio(9);
+        if (currentStation == minStation) {
+            setCurrentStation(maxStation);
             return;
         }
-        currentRadio--;
+        currentStation--;
     }
 
-    public int getCurrentRadio() {
-        return currentRadio;
+    public int getCurrentStation() {
+        return currentStation;
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
-            currentVolume = 0;
+        if (currentVolume < minVolume) {
+            currentVolume = minVolume;
         }
-        if (currentVolume > 10) {
-            currentVolume = 10;
+        if (currentVolume > maxVolume) {
+            currentVolume = maxVolume;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         }
+        return;
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
         }
+        return;
     }
 
     public int getCurrentVolume() {
