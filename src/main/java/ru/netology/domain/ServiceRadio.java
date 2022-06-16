@@ -1,5 +1,12 @@
 package ru.netology.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ServiceRadio {
     private int numberStation = 10;
     private int currentStation;
@@ -9,16 +16,9 @@ public class ServiceRadio {
     private int maxVolume = 100;
     private int minVolume = 0;
 
-    public ServiceRadio() {
-    }
-
     public ServiceRadio(int numberStation) {
         this.numberStation = numberStation;
-        this.maxStation = numberStation - 1;
-    }
-
-    public int getNumberStation() {
-        return numberStation;
+        this.numberStation = numberStation - 1;
     }
 
     public void setNumberStation(int numberStation) {
@@ -26,7 +26,6 @@ public class ServiceRadio {
             this.numberStation = numberStation;
             return;
         }
-
     }
 
     public void setCurrentStation(int currentStation) {
@@ -39,7 +38,6 @@ public class ServiceRadio {
         this.currentStation = currentStation;
     }
 
-
     public void next() {
         if (currentStation == maxStation) {
             setCurrentStation(minStation);
@@ -48,17 +46,12 @@ public class ServiceRadio {
         currentStation++;
     }
 
-
     public void prev() {
         if (currentStation == minStation) {
             setCurrentStation(maxStation);
             return;
         }
         currentStation--;
-    }
-
-    public int getCurrentStation() {
-        return currentStation;
     }
 
     public void setCurrentVolume(int currentVolume) {
@@ -84,10 +77,4 @@ public class ServiceRadio {
         }
         return;
     }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-
 }
